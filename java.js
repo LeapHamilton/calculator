@@ -1,19 +1,40 @@
 function addNumbers(a,b) {
     return a + b
 }
-console.log(addNumbers(10,100));
+
 
 function subtractNumbers(a,b) {
     return a - b
 }
-console.log(subtractNumbers (10, 2));
+
 
 function multiplyNumbers(a,b){
     return a * b 
 }
-console.log(multiplyNumbers(1000,2000));
+
 
 function divideNumbers(a,b) {
     return a / b
 }
-console.log(divideNumbers(520,2));
+
+
+function operate(operator,a,b) {
+
+if (operator === '+' ) {
+    return addNumbers (a,b);
+}
+if (operator === '-') {
+    return subtractNumbers (a,b);
+} 
+if (operator === '*') {
+    return multiplyNumbers (a,b);
+} 
+if (operator === '/') {
+    return divideNumbers (a,b);
+}
+
+}
+console.log(operate('+', 10,4));
+console.log(operate('-',10,4));
+console.log(operate('*',10,4));
+console.log(operate('/',10,4));

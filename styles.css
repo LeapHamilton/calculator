@@ -5,9 +5,19 @@ html {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: black; ;
+    background-color: black;
+    background-image:linear-gradient(to left,#03001e,#7303c0, #ec38bc,#fdeff9);
+    background-size: 400%;
+    animation: bg-animation 20s infinite alternate;
   }
 
+  @keyframes bg-animation {
+      0% {background-position: left;
+      }
+      100% {
+          background-position: right;
+      }
+  }
 
   *, *::before, *::after {
     margin: 0;
@@ -36,6 +46,7 @@ border-radius: 30px;
 
 button {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
     height: 60px;
     font-size: 3rem;
     border-radius: 10px;

@@ -63,11 +63,12 @@ button:hover {
     background-color: orange;
     font-size: 5rem;
 }
-.zero {
-    grid-column: span 2;
+{
+   
 }
 
 .equal-sign {
+    grid-column: span 2;
     background-color: #2e86c0;
     border-color: #337cac;
     color: #fff;

@@ -51,7 +51,18 @@ function equalStuff (){
     console.log("Toppity Tip!")
     secondInput = display.value;
     if (whichOperator === "+") {
-        display.value = addNumbers(firstInput, secondInput) * 1;
+        display.value = addNumbers(firstInput*1, secondInput*1);
+}
+
+    if (whichOperator === "-") {
+    display.value = subtractNumbers(firstInput*1, secondInput*1);
+}
+
+    if (whichOperator === "/") {
+    display.value = divideNumbers(firstInput*1, secondInput*1);
+}
+    if (whichOperator === "*") {
+    display.value = multiplyNumbers(firstInput*1, secondInput*2);
 }
 
 

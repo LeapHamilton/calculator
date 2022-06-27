@@ -1,6 +1,7 @@
 const display = document.querySelector(".calculator-screen");
 
 let decimalPoint = false;
+let posNeg = false;
 let isAfterOperator = false;
 let whichOperator 
 let firstInput = [];
@@ -18,6 +19,10 @@ buttons.forEach((button) => {
 
 function checkInput(inputNumber) {
 
+    if (inputNumber === "posneg") {
+        togglePosNeg();
+    }
+
     if (inputNumber === "equal") {
        
         equalStuff();
@@ -30,7 +35,7 @@ function checkInput(inputNumber) {
     if (!isNaN(inputNumber)) {
       
         displayAndAddToUserInput(inputNumber);
-}
+    }
     if (inputNumber === "point" && decimalPoint === false) {
         displayAndAddToUserInput(".");
         decimalPoint = true
@@ -38,16 +43,46 @@ function checkInput(inputNumber) {
 
     if (inputNumber === "Del") {
         inputNumberPop = deleteNumber();
-
     }
+
     if (inputNumber ==="AC") {
-        console.log("Bippity Bop")
         clearAllNumbers = clearAll();
     }
 
 }
 
-function equalStuff (){
+function togglePosNeg() {
+
+    if (display.value.includes("-")) {
+        display.value = display.value.slice(1)}
+        else {
+        display.value = "-" + display.value;}
+    
+        if ( isAfterOperator === true){
+            console.log (posNeg);
+            display.value = "-";}
+
+    /*
+if (posNeg === false) {
+    display.value = "-" + display.value;
+} 
+
+if (posNeg === true && display.value.includes("-")) {
+    display.value = display.value.slice(1)
+};
+
+if ( isAfterOperator === true){
+    console.log (posNeg);
+    display.value = "-";}
+
+console.log(posNeg);
+posNeg = posNeg !== true;
+*/
+};
+
+
+function equalStuff() {
+    posNeg = posNeg !== true;
     console.log("Toppity Tip!")
     secondInput = display.value;
     if (whichOperator === "+") {
@@ -62,7 +97,7 @@ function equalStuff (){
     display.value = divideNumbers(firstInput*1, secondInput*1);
 }
     if (whichOperator === "*") {
-    display.value = multiplyNumbers(firstInput*1, secondInput*2);
+    display.value = multiplyNumbers(firstInput*1, secondInput*1);
 }
 
 
@@ -78,18 +113,19 @@ function useOperator(operator) {
 
 
 function displayAndAddToUserInput(inputNumber) {
-    /*console.log(inputNumber);*/
-    if (isAfterOperator === true) {
+   
+    if (isAfterOperator === true && display.value !== "-") {
         display.value="";
         isAfterOperator = false;
     }
+
     displayNumber (inputNumber);
-    /*addToVariable (inputNumber);*/
 
 }
 
 function displayNumber(inputNumber) {
-display.value += inputNumber;
+
+    display.value += inputNumber;
 }
 
 function addToVariable(inputNumber){
@@ -99,37 +135,39 @@ function addToVariable(inputNumber){
 };
 
 function clearAll() {
-    location.reload();
-    /*
-    firstInput.splice(0, firstInput.length);
-    secondInput.splice(0, secondInput.length);
-    display.value= "";*/
-
-
+    display.value = "";
+    firstInput = "";
+    secondInput = "";
+    decimalPoint= false;
+    posNeg= false;
 }
 
 function deleteNumber() {
-    firstInput.pop();
     display.value=display.value.slice(0, -1);
-    history1=parseInt(firstInput.join(''))
-    console.log(history1);
+    return;
 }
       
   
 function addNumbers(a,b) {
-    return a + b
+    return a + b;
 }
 
 function subtractNumbers(a,b) {
-    return a - b
+    return a - b;
 }
 
 function multiplyNumbers(a,b){
-    return a * b 
+    return a * b;
 }
 
 function divideNumbers(a,b) {
-    return a / b
+    if (a === 0 && b === 0) {
+        display.value = "";
+        alert("Joker, eh? Why, I oughta divide YOU by zero!");
+        return 0;}
+        
+
+    return a / b;
 }
 
 
@@ -142,16 +180,10 @@ function operate(operator,a,b) {
     return subtractNumbers (a,b);
     } 
     if (operator === '*') {
-        return multiplyNumbers (a,b);
+        multiplyNumbers (a,b);
     } 
     if (operator === '/') {
         return divideNumbers (a,b);
     }
 
 }
-
-/*
-console.log(operate('+', 10,4));
-console.log(operate('-',10,4));
-console.log(operate('*',10,4));
-console.log(operate('/',10,4));*/
